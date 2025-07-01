@@ -16,6 +16,7 @@ rustls = "0.23.28"
 actix-tls = "3.4.0"
 
 # CoT (Cursor on Target) XML processing
+roxmltree = "0.20.0"
 serde = { version = "1.0", features = ["derive"] }
 
 # Database with Postgres
@@ -42,4 +43,3 @@ libloading = "0.8"
 anyhow = "1.0"
 uuid = { version = "1.8", features = ["v4"] }
 actix = "0.13.5"
-roxmltree = "0.20.0"
