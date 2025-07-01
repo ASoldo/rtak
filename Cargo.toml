@@ -16,7 +16,6 @@ rustls = "0.23.28"
 actix-tls = "3.4.0"
 
 # CoT (Cursor on Target) XML processing
-quick-xml = { version = "0.38", features = ["serialize", "async-tokio"] }
 serde = { version = "1.0", features = ["derive"] }
 
 # Database with Postgres
