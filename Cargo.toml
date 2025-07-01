@@ -1,0 +1,45 @@
+[package]
+name = "rtak"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Web server & WebSocket
+actix-web = "4.11.0"
+actix-web-actors = "4.2"
+
+# Async runtime
+tokio = { version = "1.38", features = ["full"] }
+
+# Secure TLS
+rustls = "0.23.28"
+actix-tls = "3.4.0"
+
+# CoT (Cursor on Target) XML processing
+quick-xml = { version = "0.38", features = ["serialize", "async-tokio"] }
+serde = { version = "1.0", features = ["derive"] }
+serde-xml-rs = "0.6"
+
+# Database with Postgres
+sqlx = { version = "0.8.6", features = ["runtime-tokio-rustls", "postgres", "uuid", "macros", "migrate"] }
+
+# Configuration & CLI
+config = "0.14"
+clap = { version = "4.5", features = ["derive"] }
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = "0.3"
+opentelemetry = { version = "0.22.0", features = [] }
+opentelemetry-prometheus = "0.14"
+prometheus = "0.13"
+
+# Authentication
+jsonwebtoken = "9.3"
+
+# Plugin loading
+libloading = "0.8"
+
+# Utilities
+anyhow = "1.0"
+uuid = { version = "1.8", features = ["v4"] }
