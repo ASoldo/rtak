@@ -1,17 +1,23 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(rename = "event")]
 pub struct CoT {
     #[serde(rename = "type", default)]
     pub cot_type: String,
+
     #[serde(default)]
     pub uid: String,
+
     #[serde(default)]
     pub time: String,
+
     #[serde(default)]
     pub stale: String,
+
     #[serde(default)]
     pub how: String,
+
     #[serde(default)]
     pub point: Option<Point>,
 }
