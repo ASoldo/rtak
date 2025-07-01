@@ -1,9 +1,14 @@
+use crate::broadcaster::BroadcastMessage;
 use crate::cot::CoT;
+use actix::Addr;
 use quick_xml::de::from_str;
 use tokio::net::UdpSocket;
 use tracing::{error, info};
 
-pub async fn start_udp_listener(bind_addr: &str) -> std::io::Result<()> {
+pub async fn start_udp_listener(
+    bind_addr: &str,
+    broadcaster: Addr<crate::broadcaster::Broadcaster>,
+) -> std::io::Result<()> {
     let socket = UdpSocket::bind(bind_addr).await?;
     let mut buf = vec![0u8; 65535];
 
@@ -17,6 +22,7 @@ pub async fn start_udp_listener(bind_addr: &str) -> std::io::Result<()> {
             Ok(xml) => match from_str::<CoT>(xml) {
                 Ok(cot) => {
                     info!("Received CoT from {}: {:?}", addr, cot);
+                    broadcaster.do_send(BroadcastMessage(xml.to_string()));
                 }
                 Err(e) => error!("Failed to parse CoT XML: {}", e),
             },
